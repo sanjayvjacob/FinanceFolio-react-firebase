@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 import "./styles.css"
 import { auth } from '../../config/firebase-config';
+import { RiMoneyPoundCircleLine } from "react-icons/ri";
+import { IoAddCircle } from "react-icons/io5";
 
 
 const ExpenseTracker = () => {
@@ -16,7 +18,7 @@ const ExpenseTracker = () => {
   const navigate = useNavigate();
 
   const [description, setDescription] = useState("");
-  const [transactionAmount, setTransactionAmount] = useState(0);
+  const [transactionAmount, setTransactionAmount] = useState(null);
   const [transactionType, setTransactionType] = useState("expense");
 
   const { balance, income, expenses } = transactionTotals;
@@ -45,11 +47,14 @@ const ExpenseTracker = () => {
 
   return (
     <>
-    <h1> {name}'s Expense Tracker</h1>
+    <div>
+    <h1 className='title'>FinanceFolio</h1>
+    </div>
     <div className='main-container'>
       
           {profilePhoto && (
           <div className="profile">
+            <h1 className='name'>{name}</h1>
             <img className="profile-photo" src={profilePhoto} />
             <button className="sign-out-button" onClick={signUserOut}>
               Sign Out
@@ -60,19 +65,19 @@ const ExpenseTracker = () => {
         <div className="container">
           <div className="balance">
             <h3> Your Balance</h3>
-            {balance >= 0 ? <h2> ${balance}</h2> : <h2> -${balance * -1}</h2>}
+            {balance >= 0 ? <h2> £{balance}</h2> : <h2> -£{balance * -1}</h2>}
           </div>
 
           <div className="summary">
 
             <div className="income">
-              <h4>Income</h4>
-              <p>${income}</p>
+              <h4>Total Income</h4>
+              <p>£{income}</p>
             </div>
 
             <div className="expenses">
-              <h4>Expenses</h4>
-              <p>${expenses}</p>
+              <h4>Total Expenses</h4>
+              <p>£{expenses}</p>
             </div>
 
           </div>
@@ -116,7 +121,7 @@ const ExpenseTracker = () => {
             <label htmlFor="income"> Income</label>
             </div>
             </div>
-            <button type="submit" className='add-transaction-btn'> Add Transaction</button>
+            <button type="submit" className='add-transaction-btn'><IoAddCircle style={{ fontSize: '20px' }} />Transaction</button>
           </form>
         </div>
       </div>
@@ -131,7 +136,7 @@ const ExpenseTracker = () => {
               <li>
                 <h4> {description} </h4>
                 <p>
-                  ${transactionAmount} •{" "}
+                  £{transactionAmount} •{" "}
                   <label
                     style={{
                       color: transactionType === "expense" ? "red" : "green",

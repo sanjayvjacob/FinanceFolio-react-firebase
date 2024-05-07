@@ -27,6 +27,7 @@ const Auth = () => {
 
   return (
     <div className="login-page">
+      <h1>FinanceFolio</h1>
       <p>Sign In With Google to Continue</p>
       <button className="login-with-google-btn" onClick={signInWithGoogle}><FcGoogle />Sign In With Google
       </button>

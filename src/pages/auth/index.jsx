@@ -2,6 +2,7 @@ import {auth, provider} from "../../config/firebase-config"
 import { signInWithPopup } from 'firebase/auth'
 import { useNavigate, Navigate } from 'react-router-dom'
 import useGetUserInfo from '../../hooks/useGetUserInfo'
+import { FcGoogle } from "react-icons/fc";
 import "./styles.css"
 
 const Auth = () => {
@@ -27,9 +28,7 @@ const Auth = () => {
   return (
     <div className="login-page">
       <p>Sign In With Google to Continue</p>
-      <button className="login-with-google-btn" onClick={signInWithGoogle}>
-        {" "}
-        Sign In With Google
+      <button className="login-with-google-btn" onClick={signInWithGoogle}><FcGoogle />Sign In With Google
       </button>
     </div>
   );
